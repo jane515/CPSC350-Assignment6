@@ -2,7 +2,7 @@
 //2317614
 //huayang@chapman.edu
 //CPSC350-01
-//Assignment 5
+//Assignment 6
 
 #include "Process.h"
 Process::Process()
@@ -59,7 +59,7 @@ void Process::generateNumber(string fileName)
 {
   ofstream out;
   out.open(fileName);
-  numItem = rand()%1000;
+  numItem = rand()%10000;
   //store how many numbers to be srot in the first line
   out<<numItem<<endl;
   //output random number of doubles in the file
@@ -80,6 +80,7 @@ void Process::generateNumber(string fileName)
 }
 int Process::partition(double array[],int lowInt,int highInt)
 {
+  //choose the middle index as the pivot
   int midpoint = lowInt +(highInt-lowInt)/2;
   double pivot = array[midpoint];
   bool done = false;
@@ -124,14 +125,13 @@ void Process::quickSort(double array[],int lowInt,int highInt)
 }
 void Process::merges(double array[],int i,int j,int k)
 {
-
   int times = 1;
   int mergedSize = k-i+1;
   int mergePos = 0; //position to insert merged number
   int leftPos = 0;
   int rightPos = 0;
+  //new array for merged things
   merge = new double[arraySize];
-
 
   leftPos = i;
   rightPos = j+1;
@@ -152,13 +152,14 @@ void Process::merges(double array[],int i,int j,int k)
     }
     ++mergePos;
   }
-
+  //if left part is not empty
   while(leftPos<=j)
   {
     merge[mergePos]=array[leftPos];
     ++leftPos;
     ++mergePos;
   }
+  //if right part is not empty
   while(rightPos<=k)
   {
     merge[mergePos]=array[rightPos];
@@ -195,6 +196,7 @@ void Process::selectionSort(double array[],int arrSize)
 {
   int i =0;
   int j =0;
+  //smallest element in the array
   int indexSmall = 0;
   double temp = 0;
   for(i=0;i<arrSize;++i)
@@ -207,6 +209,7 @@ void Process::selectionSort(double array[],int arrSize)
         indexSmall = j;
       }
     }
+    //swap
     temp = array[i];
     array[i] = array[indexSmall];
     array[indexSmall]=temp;
@@ -222,6 +225,7 @@ void Process::insertSort(double array[],int arrSize)
     j=i;
     while(j>0 && array[j]<array[j-1])
     {
+      //swap
       temp = array[j];
       array[j]=array[j-1];
       array[j-1]=temp;
@@ -239,6 +243,7 @@ void Process::bubbleSort(double array[],int arrSize)
     {
       if(array[j]>array[j+1])
       {
+        //swap
         double temp = array[j];
         array[j]=array[j+1];
         array[j+1]=temp;
@@ -263,6 +268,7 @@ void Process::run(string fileName)
     cin>>answer;
     if(answer==1)
     {
+      cout<<"Start to generate numbers, may take a while"<<endl;
       generateNumber(fileName);
       cout<<"number has been generated in the file"<<endl;
     }

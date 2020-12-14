@@ -2,7 +2,7 @@
 //2317614
 //huayang@chapman.edu
 //CPSC350-01
-//Assignment 5
+//Assignment 6
 #include <iostream>
 #include <sstream>
 #include<fstream>
